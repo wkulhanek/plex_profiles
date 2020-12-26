@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Client name="iOS">
+  <!-- Author: Plex Inc. -->
+  <!-- This profile is used by A5 and higher devices (starting with iPhone 4S and iPad 3) -->
+  <Settings>
+    <Setting name="DirectPlayStreamSelection" value="true" />
+    <Setting name="StreamUnselectedIncompatibleAudioStreams" value="true" />
+  </Settings>
+  <TranscodeTargets>
+    <VideoProfile container="mp4" codec="h264" audioCodec="eac3" subtitleCodec="mov_text" context="static" />
+    <VideoProfile protocol="hls" container="mp4" codec="h264" audioCodec="eac3" subtitleCodec="eia_608_embedded" context="streaming" />
+    <VideoProfile protocol="hls" container="mp4" codec="hevc" audioCodec="eac3" subtitleCodec="eia_608_embedded" context="streaming" />
+    <MusicProfile container="mp4" codec="aac" />
+    <PhotoProfile container="jpeg" />
+    <SubtitleProfile protocol="hls" container="webvtt" subtitleCodec="webvtt"/>
+  </TranscodeTargets>
+  <DirectPlayProfiles>
+    <VideoProfile container="mp4" codec="h264" audioCodec="eac3" subtitleCodec="mov_text,tx3g,ttxt,text" />
+    <VideoProfile container="mp4" codec="hevc" audioCodec="eac3" subtitleCodec="mov_text,tx3g,ttxt,text" />
+    <VideoProfile container="mov" codec="h264" audioCodec="eac3" subtitleCodec="mov_text,tx3g,ttxt,text" />
+    <!-- Allow Direct Play of HLS content  -->
+    <VideoProfile protocol="hls" container="mpegts" codec="h264" audioCodec="eac3" />
+    <VideoProfile protocol="hls" container="mp4" codec="h264" audioCodec="eac3" />
+    <VideoProfile protocol="hls" container="mp4" codec="hevc" audioCodec="eac3" />
+    <MusicProfile container="mp3" codec="mp3" />
+    <MusicProfile container="mp4" codec="aac" />
+    <MusicProfile container="mp4" codec="alac" />
+    <MusicProfile container="flac" codec="flac" />
+    <PhotoProfile container="jpeg,gif,bmp,png" />
+  </DirectPlayProfiles>
+  <CodecProfiles>
+    <VideoCodec name="h264">
+      <Limitations>
+        <UpperBound name="video.width" value="3840" isRequired="true" />
+        <UpperBound name="video.height" value="2160" isRequired="true" />
+        <UpperBound name="video.bitDepth" value="8" />
+        <NotMatch name="video.separateFields" value="1" />
+      </Limitations>
+    </VideoCodec>
+    <VideoCodec name="hevc">
+      <Limitations>
+        <UpperBound name="video.width" value="3840" isRequired="true" />
+        <UpperBound name="video.height" value="2160" isRequired="true" />
+        <UpperBound name="video.bitDepth" value="10" />
+        <NotMatch name="video.separateFields" value="1" />
+        <UpperBound name="video.width" value="1920" onlyTranscodes="true" />
+        <UpperBound name="video.height" value="1080" onlyTranscodes="true" />
+        <UpperBound name="video.bitDepth" value="8" onlyTranscodes="true" />
+      </Limitations>
+    </VideoCodec>
+    <VideoAudioCodec name="*">
+      <Limitations>
+        <UpperBound name="audio.channels" value="8" />
+        <UpperBound name="audio.channels" value="2" onlyTranscodes="true" />
+      </Limitations>
+    </VideoAudioCodec>
+  </CodecProfiles>
+</Client>
